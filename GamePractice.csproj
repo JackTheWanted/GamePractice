@@ -11,6 +11,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Content\Images\blackchip.png" />
+    <None Remove="Content\Images\connect4.png" />
     <None Remove="Icon.ico" />
     <None Remove="Icon.bmp" />
   </ItemGroup>

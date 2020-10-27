@@ -12,7 +12,11 @@ namespace GamePractice
         private Texture2D black;
         private Texture2D red;
         private MouseState oldState;
+        int i;
+        private int x;
+        private int y;
         int playerTurn = 1;
+        int[][] board;
 
         public Game1()
         {
@@ -24,6 +28,13 @@ namespace GamePractice
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            board = new int[8][];
+            for(i = 0; i < 8; i++) 
+            {
+                board[i] = new int[7];
+            }
+
+
             this.IsMouseVisible = true;
             base.Initialize();
         }
@@ -45,34 +56,165 @@ namespace GamePractice
             MouseState mouseState = Mouse.GetState();
             MouseState newState = Mouse.GetState();
 
-            
-            int x = mouseState.X;
-            int y = mouseState.Y;
+            int mouseX = mouseState.X;
+            int mouseY = mouseState.Y;
 
             if (newState.LeftButton == ButtonState.Pressed && oldState.LeftButton == ButtonState.Released)
             {
-                if (x >= 200)
+                if (mouseX >= 138 && mouseX <= 212)
                 {
-                    Mouse.SetPosition(0, 0);
+                    if (playerTurn == 1 && board[0][0] < 8)
+                    {
+                        board[0][0] += 1;
+                        board[0][board[0][0]] = 1;
+                        playerTurn = 2;
+                    }
+
+                    else if (playerTurn == 2 && board[0][0] < 8)
+                    {
+                        board[0][0] += 1;
+                        board[0][board[0][0]] = 2;
+                        playerTurn = 1;
+                    }
+                    
                 }
+
+                if (mouseX >= 213 && mouseX <= 287)
+                {
+                    if (playerTurn == 1 && board[1][0] < 8)
+                    {
+                        board[1][0] += 1;
+                        board[1][board[1][0]] = 1;
+                        playerTurn = 2;
+                    }
+
+                    else if (playerTurn == 2 && board[1][0] < 8)
+                    {
+                        board[1][0] += 1;
+                        board[1][board[1][0]] = 2;
+                        playerTurn = 1;
+                    }
+                }
+
+                if (mouseX >= 288 && mouseX <= 362)
+                {
+                    if (playerTurn == 1 && board[2][0] < 8)
+                    {
+                        board[2][0] += 1;
+                        board[2][board[2][0]] = 1;
+                        playerTurn = 2;
+                    }
+
+                    else if (playerTurn == 2 && board[2][0] < 8)
+                    {
+                        board[2][0] += 1;
+                        board[2][board[2][0]] = 2;
+                        playerTurn = 1;
+                    }
+                }
+
+                if (mouseX >= 363 && mouseX <= 437)
+                {
+                    if (playerTurn == 1 && board[3][0] < 8)
+                    {
+                        board[3][0] += 1;
+                        board[3][board[3][0]] = 1;
+                        playerTurn = 2;
+                    }
+
+                    else if (playerTurn == 2 && board[3][0] < 8)
+                    {
+                        board[3][0] += 1;
+                        board[3][board[3][0]] = 2;
+                        playerTurn = 1;
+                    }
+                }
+
+                if (mouseX >= 438 && mouseX <= 512)
+                {
+                    if (playerTurn == 1 && board[4][0] < 8)
+                    {
+                        board[4][0] += 1;
+                        board[4][board[4][0]] = 1;
+                        playerTurn = 2;
+                    }
+
+                    else if (playerTurn == 2 && board[4][0] < 8)
+                    {
+                        board[4][0] += 1;
+                        board[4][board[4][0]] = 2;
+                        playerTurn = 1;
+                    }
+                }
+
+                if (mouseX >= 513 && mouseX <= 587)
+                {
+                    if (playerTurn == 1 && board[5][0] < 8)
+                    {
+                        board[5][0] += 1;
+                        board[5][board[5][0]] = 1;
+                        playerTurn = 2;
+                    }
+
+                    else if (playerTurn == 2 && board[5][0] < 8)
+                    {
+                        board[5][0] += 1;
+                        board[5][board[5][0]] = 2;
+                        playerTurn = 1;
+                    }
+                }
+
+                if (mouseX >= 588 && mouseX <= 662)
+                {
+                    if (playerTurn == 1 && board[6][0] < 8)
+                    {
+                        board[6][0] += 1;
+                        board[6][board[6][0]] = 1;
+                        playerTurn = 2;
+                    }
+
+                    else if (playerTurn == 2 && board[6][0] < 8)
+                    {
+                        board[6][0] += 1;
+                        board[6][board[6][0]] = 2;
+                        playerTurn = 1;
+                    }
+                }
+
+
             }
 
             oldState = newState;
+                base.Update(gameTime);
 
-            base.Update(gameTime);
-        }
+            
+        }  
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            
             spriteBatch.Begin();
 
+            for (x = 0; x < 7; x++)
+            {
+                for (y = 1; y < 7; y++)
+                {
+                    if (board[x][y] == 1)
+                    {
+                        spriteBatch.Draw(red, new Vector2(x * 74 + 138, 466 - (y * 56)), Color.White);
+                    }
 
-            spriteBatch.Draw(black, new Vector2(118, 237), Color.White);
-            spriteBatch.Draw(red, new Vector2(430, 250), Color.White);
-            spriteBatch.Draw(background, new Rectangle(80, 130, 600, 360), Color.White);
+                    if (board[x][y] == 2)
+                    {
+                        spriteBatch.Draw(black, new Vector2(x * 74 + 138, 466 - (y * 56)), Color.White);
+                    }
+                }
+            }
+            
+            spriteBatch.Draw(background, new Rectangle(100, 130, 600, 360), Color.White);
             
             
 
